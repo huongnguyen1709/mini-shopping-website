@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Message from './../components/Message';
 
 // container là kết nối giữa các components và store
@@ -19,22 +20,12 @@ class MessageContainer extends Component {
         return result;
     }
 }
-/*
+
 // để check type of các props
-ProductsContainer.propTypes = {
-    products : PropTypes.arrayOf(
-        PropTypes.shape({ // An object taking on a particular shape
-            id : PropTypes.number.isRequired,
-            name : PropTypes.string.isRequired,
-            image : PropTypes.string.isRequired,
-            description : PropTypes.string.isRequired,
-            price : PropTypes.number.isRequired,
-            inventory : PropTypes.number.isRequired,
-            rating : PropTypes.number.isRequired,
-        })
-    ).isRequired // isRequired là yêu cầu array phải tồn tại, rỗng cũng dc nhưng phải có
+MessageContainer.propTypes = {
+    message : PropTypes.string.isRequired
 }
-*/
+
 const mapStateToProps = state => {
     return {
         message : state.message,

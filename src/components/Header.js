@@ -8,7 +8,7 @@ class Header extends Component {
                     <li>
                         <div className="logo-wrapper waves-light waves-effect waves-light">
                             <a>
-                                <img src="http://mdbootstrap.com/img/logo/mdb-transparent.png" alt="" className="img-fluid flex-center" />
+                                <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" alt="" className="img-fluid flex-center" />
                             </a>
                         </div>
                     </li>

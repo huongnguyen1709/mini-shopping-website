@@ -8,7 +8,6 @@ const cart = (state = initialState, action) => {
     var index = -1;
     switch(action.type) { 
         case Types.ADD_TO_CART :
-            console.log(action);
             index = findProductInCart(state, product);
             if(index !== -1) {
                 state[index].quantity += quantity;
@@ -17,6 +16,14 @@ const cart = (state = initialState, action) => {
                     product,
                     quantity
                 });
+            }
+            localStorage.setItem('CART', JSON.stringify(state));
+            return [...state];
+        case Types.DELETE_PRODUCT_IN_CART : 
+            console.log(action);
+            index = findProductInCart(state, product);
+            if(index !== -1) {
+                state.splice(index, 1);
             }
             localStorage.setItem('CART', JSON.stringify(state));
             return [...state];

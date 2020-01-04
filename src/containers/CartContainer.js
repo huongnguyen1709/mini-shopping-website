@@ -5,11 +5,12 @@ import Cart from './../components/Cart';
 import CartItem from './../components/CartItem';
 import CartResult from './../components/CartResult';
 import * as Message from './../constants/Message';
+import { RemoveProductInCart } from './../actions/index';
 
 // container là kết nối giữa các components và store
 class CartContainer extends Component {
     render() {
-        var { cart } = this.props; 
+        var { cart, onDelete } = this.props; 
         return (    
             <div>
                 <Cart>
@@ -30,6 +31,9 @@ class CartContainer extends Component {
                     <CartItem 
                         key={index}
                         item={item}
+                        onDeleteProductInCart={
+                            
+                        }
                     />
                 )
             });
@@ -72,4 +76,12 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(CartContainer);
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onDeleteProductInCart : (product) => {
+            dispatch(RemoveProductInCart(product));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

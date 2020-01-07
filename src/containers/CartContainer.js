@@ -5,12 +5,12 @@ import Cart from './../components/Cart';
 import CartItem from './../components/CartItem';
 import CartResult from './../components/CartResult';
 import * as Message from './../constants/Message';
-import { RemoveProductInCart } from './../actions/index';
+import { RemoveProductInCart, ChangeMessage, UpdateProductInCart } from './../actions/index';
 
 // container là kết nối giữa các components và store
 class CartContainer extends Component {
     render() {
-        var { cart, onDelete } = this.props; 
+        var { cart } = this.props; 
         return (    
             <div>
                 <Cart>
@@ -22,6 +22,7 @@ class CartContainer extends Component {
     }
 
     showCartItem(cart) { 
+        var {onDeleteProductInCart, onChangeMessage, onUpdateProductInCart} = this.props;
         var result = <tr> 
                         <td>{Message.MSG_CART_EMPTY}</td>
                      </tr>;
@@ -31,9 +32,9 @@ class CartContainer extends Component {
                     <CartItem 
                         key={index}
                         item={item}
-                        onDeleteProductInCart={
-                            
-                        }
+                        onDeleteProductInCart={onDeleteProductInCart}
+                        onChangeMessage={onChangeMessage}
+                        onUpdateProductInCart={onUpdateProductInCart}
                     />
                 )
             });
@@ -67,7 +68,10 @@ CartContainer.propTypes = {
             rating : PropTypes.number.isRequired,
         }).isRequired,
         quantity : PropTypes.number.isRequired
-    })).isRequired // isRequired là yêu cầu array phải tồn tại, rỗng cũng dc nhưng phải có
+    })).isRequired, // isRequired là yêu cầu array phải tồn tại, rỗng cũng dc nhưng phải có
+    onDeleteProductInCart : PropTypes.func.isRequired,
+    onChangeMessage : PropTypes.func.isRequired,
+    onUpdateProductInCart : PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -80,6 +84,14 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onDeleteProductInCart : (product) => {
             dispatch(RemoveProductInCart(product));
+        },
+
+        onChangeMessage : (message) => {
+            dispatch(ChangeMessage(message));
+        },
+
+        onUpdateProductInCart : (product, quantity) => {
+            dispatch(UpdateProductInCart(product, quantity));
         }
     }
 }

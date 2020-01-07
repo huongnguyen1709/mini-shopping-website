@@ -32,12 +32,4 @@ const mapStateToProps = state => {
     }
 }
 
-/*const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onAddToCart : (product) => {
-            dispatch(AddToCart(product, 1));
-        }
-    }
-}*/
-
 export default connect(mapStateToProps, null)(MessageContainer);
